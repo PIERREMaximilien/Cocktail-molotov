@@ -2173,9 +2173,9 @@ input, select, textarea {
 /* Banner */
 
 	#banner {
-		background: #CCE8F4 url("../../images/pic01.jpg");
+		background: #CCE8F4 url("../images/bannerpic.jpg");
 		background-position: center center;
-		background-size: auto 100%;
+		background-size: cover;
 		background-repeat: no-repeat;
 		text-align: center;
 		position: relative;
@@ -2184,16 +2184,17 @@ input, select, textarea {
 	}
 
 		#banner header {
-			background-color: rgba(34, 30, 31, 0.98);
+			background-color: rgba(233, 227, 229, 0);
 			display: inline-block;
 			padding: 2.5em 5em;
 			border-radius: 5px;
+			opacity: 95%;
 		}
 
 			#banner header h2 {
 				color: #fff;
 				font-weight: 700;
-				font-size: 2.5em;
+				font-size: 4.5em;
 				margin: 0 0 0.65em 0;
 			}
 
@@ -2884,7 +2885,7 @@ input, select, textarea {
 				}
 
 					#banner header h2 {
-						font-size: 1.5em;
+						font-size: 3em;
 						line-height: 1.5em;
 						margin: 0 0 0.25em 0;
 					}
