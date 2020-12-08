@@ -4,17 +4,16 @@
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<section id="header">
+			<section id="header" style="margin-top: 0; padding-top: 0;">
 
-					<!-- Logo -->
-						<h1><a href="index.html">Cocktail Molotov</a></h1>
-
-					<!-- Nav -->
-					<nav id="nav">
+				<!-- Nav -->
+					<nav id="nav" style="margin: 0; padding: 0;">
 						<ul>
 							<li><a href="{{ url_for('home') }}">Home</a></li>
 							<li><a href="{{ url_for('allcocktails') }}">All Cocktails</a></li>
 							<li class="current"><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+							<li><a href="#">Profile</a></li>
+							<li><a href="#">Log In/Out</a></li>
 						</ul>
 					</nav>
 

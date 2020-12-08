@@ -7,6 +7,11 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+@font-face {
+	font-family: kiona;
+	src: url(../webfonts/Kiona-Regular.ttf);
+  }
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -1463,6 +1468,8 @@ input, select, textarea {
 		width: 100%;
 	}
 
+	form select:hover{cursor: pointer;}
+
 		form input[type=text]:focus,
 		form input[type=email]:focus,
 		form input[type=password]:focus,
@@ -2068,7 +2075,7 @@ input, select, textarea {
 		position: relative;
 		background: #ffffff;
 		border-bottom: solid 1px #ccc;
-		padding: 5em 0 4em 0;
+		padding: 2em 0 4em 0;
 		text-align: center;
 	}
 
@@ -2083,7 +2090,7 @@ input, select, textarea {
 /* Nav */
 
 	#nav {
-		margin: 2.5em 0 0 0;
+		margin: 2em 0 0 0;
 	}
 
 		#nav > ul {
