@@ -13,8 +13,17 @@ def home():
 
 @app.route('/allcocktails')
 def allcocktails():
-    return render_template('allCocktails.html', title='All cocktails')
+    return render_template('allCocktails.html', title='All Cocktails')
 
 @app.route('/mycocktails')
 def mycocktails():
-    return render_template('myCocktails.html', title='My cocktails')
+    return render_template('myCocktails.html', title='My Cocktails')
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html', title='My Profile')
+
+@app.route('/register')
+def register():
+    return render_template('register.html', title='Register')
+
