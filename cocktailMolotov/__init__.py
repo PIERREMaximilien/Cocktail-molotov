@@ -1,6 +1,6 @@
-#import os
-#from flask import Flask
+import os
+from flask import Flask
 
-#app = Flask(__name__)
+app = Flask(__name__)
 
-#from cocktailMolotov import routes
+from cocktailMolotov import routes
