@@ -1,13 +1,10 @@
 # encoding: utf-8
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 from flask_mongoengine import MongoEngine
 from datetime import datetime
-#from cocktailMolotov import login_manager, app
+from cocktailMolotov import login_manager, app
 #from flask_login import UserMixin
 import json
-
-
-app = Flask(__name__)
 
 # ! WE NEED TO ADD GITIGNORE
 PASSWORD = 'ok'
@@ -16,10 +13,7 @@ DB_NAME = 'Cocktail-Molotov'
 DB_URI = f'mongodb+srv://{USERNAME}:{PASSWORD}@cluster0.f9xlu.mongodb.net/{DB_NAME}?retryWrites=true&w=majority'
 app.config["MONGODB_HOST"] = DB_URI
 
-
-
 db = MongoEngine(app)
-#db.init_app(app)
 
 class User(db.Document):
     #user_id = db.IntField(primary_key=True)
@@ -44,10 +38,3 @@ def db_test():
 @app.route('/', methods=['GET'])
 def test():
     return 'RUN'
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
