@@ -1,7 +1,6 @@
 # encoding: utf-8
-from flask import request, jsonify
 from cocktailMolotov import app, db
-from flask_mongoengine import MongoEngine#, StringField, IntField
+from flask import request, jsonify
 
 #from flask_login import UserMixin
 import json
