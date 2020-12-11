@@ -549,3 +549,4 @@ def login():
 @app.route('/api/v1/ressources/cocktails/all', methods=['GET'])
 def api_all():
     return jsonify(cocktails)
+
