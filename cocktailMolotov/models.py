@@ -21,6 +21,9 @@ app.config["MONGODB_HOST"] = DB_URI
 db = MongoEngine(app)
 #db.init_app(app)
 
+
+
+
 class User(db.Document):
     #user_id = db.IntField(primary_key=True)
     username = db.StringField(max_length=120, unique=True, required=True)
@@ -44,6 +47,8 @@ def db_test():
 @app.route('/', methods=['GET'])
 def test():
     return 'RUN'
+
+
 
 
 
