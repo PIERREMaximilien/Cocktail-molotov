@@ -10,7 +10,6 @@ from cocktailMolotov import app
 def home():
     return render_template('home.html', title="Home")
 
-
 @app.route('/allcocktails')
 def allcocktails():
     return render_template('allCocktails.html', title='All Cocktails')
@@ -18,6 +17,10 @@ def allcocktails():
 @app.route('/mycocktails')
 def mycocktails():
     return render_template('myCocktails.html', title='My Cocktails')
+
+@app.route('/singlecocktail')
+def singlecocktail():
+    return render_template('singlecocktail.html')
 
 @app.route('/profile')
 def profile():
@@ -27,3 +30,6 @@ def profile():
 def register():
     return render_template('register.html', title='Register')
 
+@app.route('/login')
+def login():
+    return render_template('login.html', title='Log in')
