@@ -8,6 +8,9 @@ import json
 
 
 
+
+
+
 class User(db.Document):
     #user_id = db.IntField(primary_key=True)
     username = db.StringField(max_length=120, unique=True, required=True)
@@ -34,5 +37,9 @@ def test():
 
 
 
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
