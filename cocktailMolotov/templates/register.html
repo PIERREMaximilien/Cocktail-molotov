@@ -13,7 +13,7 @@
 							<li><a href="{{ url_for('allcocktails') }}">All Cocktails</a></li>
 							<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
 							<li><a href="{{ url_for('profile') }}">Profile</a></li>
-							<li class="current"><a href="{{ url_for('register') }}">Log In/Out</a></li>
+							<li class="current"><a href="{{ url_for('login') }}">Log In</a></li>
 						</ul>
 					</nav>
 
@@ -25,18 +25,19 @@
 		<div class="row" style="text-align: center;">
                 <!-- REGISTER -->
                 <section class="col-4 col-10-sm" style="text-align: center; margin: auto;">
-                    <h1>REGISTER</h1>
+                    <h1>REGISTER:</h1>
                 <form action="" method="POST">
-                    <label for="">Username:</label><br>
-                    <input type="text" name="username" id=""><br>
-                    <label for="">Email:</label><br>
-                    <input type="text" name="email" id=""><br>
-                    <label for="">Password:</label><br>
-                    <input type="password" name="password" id=""><br>
-                    <label for="">Confirm password:</label><br>
-                    <input type="password" name="confirm_password" id=""><br>
+                    <label for="">Username:</label>
+                    <input type="text" name="username" id="">
+                    <label for="">Email:</label>
+                    <input type="text" name="email" id="">
+                    <label for="">Password:</label>
+                    <input type="password" name="password" id="">
+                    <label for="">Confirm password:</label>
+                    <input type="password" name="confirm_password" id="">
                     <input type="submit" name="submit" value="Register">
                 </form>
+                <p>Already have an account? <a href="{{ url_for('login')}}">Log In!</a></p>
                 </section>
                 
 					
