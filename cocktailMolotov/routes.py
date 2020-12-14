@@ -46,10 +46,29 @@ def register():
     
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    '''
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    '''
     form = LoginForm()
-    return render_template('login.html', title='Log in', form=form)
+    if form.validate_on_submit():
+        #return redirect(url_for('home'))
+        user = User.objects(email='max@max.com').first()
+        if user:
+            return redirect(url_for('home'))
+
+        else:
+            return redirect(url_for('register'))
+    '''
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user)
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+        '''
+    return render_template('login.html', title='Login', form=form)
 
 @app.route('/api/v1/ressources/cocktails/all', methods=['GET'])
 def api_all():
