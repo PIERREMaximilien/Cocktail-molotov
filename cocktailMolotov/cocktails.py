@@ -1,4 +1,4 @@
-[
+cocktails = [
     {"id": 0,
     "alcohols": ["rum"],
     "name": "Mojito",
