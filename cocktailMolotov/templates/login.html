@@ -27,11 +27,17 @@
                 <section class="col-4 col-10-sm" style="text-align: center; margin: auto;">
                     <h1>LOG IN:</h1>
                 <form action="" method="POST">
-                    <label for="">Email:</label>
-                    <input type="text" name="email" id="">
-                    <label for="">Password:</label>
-                    <input type="password" name="password" id="">
-                    <input type="submit" name="submit" value="Log In">
+					{{ form.hidden_tag() }}
+                    <div class="form-group">
+						{{ form.email.label }}
+						{{ form.email }}
+					
+						{{ form.password.label }}
+						{{ form.password }}
+
+						{{ form.submit }}
+
+					</div>
                 </form>
                 <p>You don't have an account yet? <a href="{{ url_for('register')}}">Register here!</a></p>
                 </section>
