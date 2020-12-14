@@ -13,21 +13,27 @@ from flask_login import login_user, current_user, logout_user, login_required
 def home():
     return render_template('home.html', title="Home")
 
+
+
 @app.route('/allcocktails')
 def allcocktails():
     return render_template('allCocktails.html', title='All Cocktails')
+
 
 @app.route('/mycocktails')
 def mycocktails():
     return render_template('myCocktails.html', title='My Cocktails')
 
+
 @app.route('/singlecocktail')
 def singlecocktail():
     return render_template('singlecocktail.html')
 
+
 @app.route('/profile')
 def profile():
     return render_template('profile.html', title='My Profile')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -46,6 +52,7 @@ def register():
     
     return render_template('register.html', title='Register', form=form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     '''
@@ -54,28 +61,26 @@ def login():
     '''
     form = LoginForm()
     if form.validate_on_submit():
-        #return redirect(url_for('home'))
-        user = User.objects(email='max@max.com').first()
-        if user:
-            return redirect(url_for('home'))
+        user = User.objects(email=form.email.data).first()
 
-        else:
-            return redirect(url_for('register'))
-    '''
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if user.password == form.password.data:
             login_user(user)
             return redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-        '''
+
     return render_template('login.html', title='Login', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
 
 @app.route('/api/v1/ressources/cocktails/all', methods=['GET'])
 def api_all():
     return jsonify(cocktails)
-
-
-
 
 '''
 

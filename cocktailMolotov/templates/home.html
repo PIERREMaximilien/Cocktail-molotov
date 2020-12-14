@@ -11,10 +11,14 @@
 						<nav id="nav" style="margin: 0; padding: 0;">
 							<ul>
 								<li class="current"><a href="{{ url_for('home') }}">Home</a></li>
-								<li><a href="{{ url_for('allcocktails') }}">All Cocktails</a></li>
-								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
-								<li><a href="{{ url_for('profile') }}">Profile</a></li>
-								<li><a href="{{ url_for('login') }}">Log In</a></li>
+								<li><a href="{{ url_for('allcocktails') }}">Cocktails</a></li>
+								{% if current_user.is_authenticated %}
+									<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+									<li><a href="{{ url_for('profile') }}">Profile</a></li>
+									<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+								{% else %}
+									<li><a href="{{ url_for('login') }}">Log In</a></li>
+								{% endif %}
 							</ul>
 						</nav>
 
@@ -29,11 +33,11 @@
 					<!-- Intro -->
 						<section id="intro" class="container">
 							<div class="row">
-								<div class="col-4 col-12-medium">
+								<div class="col-12">
 									<section class="first">
-										<i class="icon solid featured fa-cog"></i>
+										<i class="icon solid featured fa-flask"></i>
 										<header>
-											<h2>Alcohol</h2>
+											<h2>Pick your poison!</h2>
 										</header>
 										<form action="">
 											<select name="alcohol-input" id="alcohol-input">
@@ -44,43 +48,6 @@
 												<option value="Bourbon">Bourbon</option>
 												<option value="Tequila">Tequila</option>
 											</select>
-										</form>
-									</section>
-								</div>
-								<div class="col-4 col-12-medium">
-									<section class="middle">
-										<i class="icon solid featured alt fa-bolt"></i>
-										<header>
-											<h2>Fruits/Vegetables</h2>
-										</header>
-										<form action="">
-											<select name="fruits-vegetables-input" id="fruits-vegetables-input">
-												<option value="Orange">Orange</option>
-												<option value="Lemon">Lemon</option>
-												<option value="Apple">Apple</option>
-												<option value="Lime">Lime</option>
-												<option value="Raspberry">Raspberry</option>
-												<option value="Blueberry">Blueberry</option>
-											</select>
-											
-										</form>
-										
-									</section>
-								</div>
-								<div class="col-4 col-12-medium">
-									<section class="last">
-										<i class="icon solid featured alt2 fa-star"></i>
-										<header>
-											<h2>Optionnal</h2>
-										</header>
-										<form action="">
-											<select name="optionnal-input" id="optionnal-input">
-												<option value="">Sugar</option>
-												<option value="">random1</option>
-												<option value="">random2</option>
-												<option value="">random3</option>
-											</select>
-											
 										</form>
 									</section>
 								</div>
