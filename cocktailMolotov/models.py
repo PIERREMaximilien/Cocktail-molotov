@@ -5,9 +5,10 @@ from cocktailMolotov import db, login_manager, app
 from flask_login import UserMixin
 import json
 
+
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+def load_user(id):
+    return User.objects(id=id).first()
 
 class User(db.Document, UserMixin):
     username = db.StringField(max_length=120, unique=True, required=True)
@@ -26,6 +27,3 @@ def db_test():
     test = User(username='test', email='test@gmail.com', password='test').save()
     #user.save()
     return 'Success'
-
-
-

@@ -10,10 +10,14 @@
 					<nav id="nav" style="margin: 0; padding: 0;">
 						<ul>
 							<li><a href="{{ url_for('home') }}">Home</a></li>
-							<li class="current"><a href="{{ url_for('allcocktails') }}">All Cocktails</a></li>
-							<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
-							<li><a href="{{ url_for('profile') }}">Profile</a></li>
-							<li><a href="{{ url_for('login') }}">Log In</a></li>
+							<li class="current"><a href="{{ url_for('allcocktails') }}">Cocktails</a></li>
+							{% if current_user.is_authenticated %}
+								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+								<li><a href="{{ url_for('profile') }}">Profile</a></li>
+								<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+							{% else %}
+								<li><a href="{{ url_for('login') }}">Log In</a></li>
+							{% endif %}
 						</ul>
 					</nav>
 				</section>
@@ -25,7 +29,7 @@
 				<!-- All Cocktails -->
 					<section>
 						<header class="major">
-							<h2>All Cocktails</h2>
+							<h2>Cocktails</h2>
 						</header>
 						<div class="row">
 							<div class="col-4 col-6-medium col-12-small">
