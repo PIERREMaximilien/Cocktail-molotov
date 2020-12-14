@@ -10,10 +10,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class User(db.Document, UserMixin):
-    #user_id = db.IntField(primary_key=True)
     username = db.StringField(max_length=120, unique=True, required=True)
     email = db.StringField(max_length=120, unique=True, required=True)
-    #image_file = db.StringField(default='default-pic.jpeg')
     password = db.StringField(max_length=120, unique=True, required=True)
 
 class Cocktail(db.Document):
