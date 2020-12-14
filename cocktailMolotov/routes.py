@@ -6,7 +6,7 @@ from cocktailMolotov.forms import RegistrationForm, LoginForm
 from cocktailMolotov.models import User
 from cocktailMolotov import app, db
 from flask_login import login_user, current_user, logout_user, login_required
-
+from cocktailMolotov import cocktails as api
 
 @app.route('/')
 @app.route('/home')
@@ -80,7 +80,18 @@ def logout():
 
 @app.route('/api/v1/ressources/cocktails/all', methods=['GET'])
 def api_all():
-    return jsonify(cocktails)
+    return redirect(url_for('my_cocktail'))
+    result = []
+    string = ''
+    for x in range(100):
+        for alcohol in api.cocktails[x]['alcohols']:
+            if alcohol == 'absinthe':
+                result.append(api.cocktails[x])
+        #result += api.cocktails[x]['alcohols'][0]
+    print(result)
+    #return 'OK'
+    return jsonify(result)
+
 
 '''
 

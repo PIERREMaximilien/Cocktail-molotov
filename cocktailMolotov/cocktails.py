@@ -1,37 +1,3 @@
-"""
-Alcohols list :
-    -vodka
-    -rum
-    -gin
-    -whiskey
-    -cachaca
-    -coffee liqueur
-    -triple sec
-    -bourbon
-    -tequila
-    -absinthe
-    -dry vermouth
-    -sweet red vermouth
-    -campari
-    -creme de mure
-    -cherry heering
-    -benedictine
-    -chambord
-    -kahlua
-    -strawberry liqueur
-    -creme de cacao
-    -pisco
-    -champagne
-    -creme de banane
-    -peach schnapps
-    -prosecco
-    -cognac
-    -passoa
-    -black raspberry liqueur
-    -brandy
-"""
-# Loop through the ingredients
-# change Ingredients -> only rum (ex) or do if ex: rum in ingredients
 cocktails = [
     {"id": 0,
     "alcohols": ["rum"],
@@ -532,5 +498,5 @@ cocktails = [
     "alcohols":["rum"],
     "name": "Wahine",
     "ingredients": ["37 1/2 ml Light Rum", "25 ml Vodka", "37 1/2 ml Pineapple Juice", "25 ml Lemon Juice", "12 1/2 ml Sugar Syrup", "Mint Sprig"],
-    "description": "Add all the ingredients to the mixing tin, add lots of ice, shake thoroughly for 10 seconds. Strain into rocks glass and garnish with fresh mint sprig."},
+    "description": "Add all the ingredients to the mixing tin, add lots of ice, shake thoroughly for 10 seconds. Strain into rocks glass and garnish with fresh mint sprig."}
 ]
