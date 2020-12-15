@@ -6,10 +6,7 @@ from cocktailMolotov.forms import RegistrationForm, LoginForm
 from cocktailMolotov.models import User
 from cocktailMolotov import app, db
 from flask_login import login_user, current_user, logout_user, login_required
-from cocktailMolotov import cocktails as api
-import requests
 from cocktailMolotov.cocktails import cocktails as api
-from termcolor import colored
 
 #URL = 'http://127.0.0.1:2000/api/v1/ressources/cocktails/all'
 #price = str(requests.request("GET", url, headers=headers, params = querystring).json()['Quotes'][0]['MinPrice'])
@@ -38,7 +35,7 @@ def singlecocktail():
     name = request.args.get('name')
     description = request.args.get('description')
     ingredients = request.args.get('ingredients')[1:-1].replace('\'', '').split(',')
-    return render_template('singlecocktail.html', name=name, description=description, ingredients=ingredients)
+    return render_template('singlecocktail.html', title=name, name=name, description=description, ingredients=ingredients)
 
 
 @app.route('/profile')
