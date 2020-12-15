@@ -61,7 +61,7 @@
 
 						<div class="col-4 col-6-medium col-12-small">
 							<section class="box">
-								<a href="{{ url_for('singlecocktail') }}" class="image featured"><img
+								<a href="{{ url_for('singlecocktail') }}?name={{ result['name'] }}&description={{ result['description'] }}&ingredients={{ result['ingredients'] }}" class="image featured"><img
 										src="../static/../static/images/pic02.jpg" alt="" /></a>
 								<header>
 									<h3>{{ result['name'] }}</h3>
@@ -69,7 +69,7 @@
 								<p>{{ result['description'] }}</p>
 								<footer>
 									<ul class="actions">
-										<li><a href="{{ url_for('singlecocktail') }}?name={{ result['name'] }}&description={{ result['description'] }}&ingredients={{ result['ingredients'] }}" class="button alt">Findout more</a></li>
+										<li><a href="{{ url_for('singlecocktail') }}?name={{ result['name'] }}&description={{ result['description'] }}&ingredients={{ result['ingredients'] }}" class="button alt">Find Out more</a></li>
 									</ul>
 								</footer>
 							</section>
@@ -77,9 +77,6 @@
 					{% endfor %}
 					</div>
 				</section>
-
-			</div>
-			<div class="col-12">
 			</div>
 		</div>
 	</div>
@@ -94,27 +91,26 @@
 				<!-- Portfolio -->
 				<section>
 					<header class="major">
-						<h2>Cocktail Ideas</h2>
+						<h2>Our favourites:</h2>
 					</header>
 					<div class="row">
-						{% for result in results %}
+						{% for x in results_fav %}
 
 						<div class="col-4 col-6-medium col-12-small">
 							<section class="box">
-								<a href="{{ url_for('singlecocktail') }}" class="image featured"><img
-										src="../static/../static/images/pic02.jpg" alt="" /></a>
+							<a href="{{ url_for('singlecocktail') }}?name={{ x['name'] }}&description={{ x['description'] }}&ingredients={{ x['ingredients'] }}" class="image featured"><img src="../static/../static/images/pic02.jpg" alt="" /></a>
 								<header>
-									<h3>{{ result['name'] }}</h3>
+									<h3>{{ x['name'] }}</h3>
 								</header>
-								<p>{{ result['description'] }}</p>
+								<p>{{ x['description'] }}</p>
 								<footer>
 									<ul class="actions">
-										<li><a href="{{ url_for('singlecocktail') }}?name={{ result['name'] }}&description={{ result['description'] }}&ingredients={{ result['ingredients'] }}" class="button alt">Findout more</a></li>
+										<li><a href="{{ url_for('singlecocktail') }}?name={{ x['name'] }}&description={{ x['description'] }}&ingredients={{ x['ingredients'] }}" class="button alt">Find Out more</a></li>
 									</ul>
 								</footer>
 							</section>
 						</div>
-					{% endfor %}
+						{% endfor %}
 					</div>
 				</section>
 			</div>

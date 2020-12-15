@@ -5,11 +5,11 @@
 	<div class="container" style="text-align: center;">
 		<div class="row" style="text-align: center;">
 			<section class="col-8 col-10-sm" style="text-align: center; margin: auto;">
-				<h3>{{ name }}</h3>
+				<h2>{{ name }}</h2>
 				<img src="../static/images/pic02.jpg" alt="">
-				<h1>Description:</h1>
+				<h3>Description:</h3>
 				<p>{{ description}}</p>
-				<h1>Ingredients:</h1>
+				<h3>Ingredients:</h3>
 				{% for ingredient in ingredients %}
 					<p>-> {{ ingredient }}</p>
 				{% endfor %}

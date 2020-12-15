@@ -6,10 +6,8 @@ from cocktailMolotov.forms import RegistrationForm, LoginForm
 from cocktailMolotov.models import User
 from cocktailMolotov import app, db
 from flask_login import login_user, current_user, logout_user, login_required
-from cocktailMolotov import cocktails as api
-import requests
 from cocktailMolotov.cocktails import cocktails as api
-from termcolor import colored
+
 
 #URL = 'http://127.0.0.1:2000/api/v1/ressources/cocktails/all'
 #price = str(requests.request("GET", url, headers=headers, params = querystring).json()['Quotes'][0]['MinPrice'])
@@ -19,12 +17,15 @@ from termcolor import colored
 def home():
     alcohol = request.args.get('alcohol')
     results = []
+    results_fav = [api[4], api[9], api[15]]
     if alcohol:
         for x in range(100):
             for alc in api[x]['alcohols']:
                 if alc.lower() == alcohol.lower():
                     results.append(api[x])
         return render_template('home.html', title='Home', results=results, alcohol=alcohol)
+    else:
+        return render_template('home.html', title='Home', results_fav=results_fav)
     return render_template('home.html', title="Home")
 
 
