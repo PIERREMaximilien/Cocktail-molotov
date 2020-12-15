@@ -12,7 +12,7 @@
 							<li><a href="{{ url_for('home') }}">Home</a></li>
 							<li><a href="{{ url_for('allcocktails') }}">Cocktails</a></li>
 							{% if current_user.is_authenticated %}
-								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+								<li class="current"><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
 								<li><a href="{{ url_for('profile') }}">Profile</a></li>
 								<li><a href="{{ url_for('logout') }}">Log Out</a></li>
 							{% else %}
