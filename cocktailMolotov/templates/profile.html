@@ -10,10 +10,9 @@
 					<nav id="nav" style="margin: 0; padding: 0;">
 						<ul>
 							<li><a href="{{ url_for('home') }}">Home</a></li>
-							<li><a href="{{ url_for('allcocktails') }}">Cocktails</a></li>
 							{% if current_user.is_authenticated %}
-								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
-								<li><a href="{{ url_for('profile') }}">Profile</a></li>
+								<><a href="{{ url_for('mycocktails') }}">My Cocktails</a></>
+								<li class="current"><a href="{{ url_for('profile') }}">Profile</a></li>
 								<li><a href="{{ url_for('logout') }}">Log Out</a></li>
 							{% else %}
 								<li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -29,11 +28,13 @@
 		<div class="row" style="text-align: center;">
                 <!-- REGISTER -->
                 <section class="col-4 col-10-sm" style="text-align: center; margin: auto;">
-                    <h1>My Profile:</h1>
-                
+					<h1>Your information:</h1>
+					<p>Username: {{ current_user.username }}</p>
+					<p>Email: {{ current_user.email }} </p>
+					<p><a href="#">Change password</a></p>
+					<p><a href="#">Delete account</a></p>
                 </section>
                 
-					
 		</div>
 	</div>
 </section>

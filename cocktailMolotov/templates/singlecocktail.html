@@ -10,9 +10,8 @@
 					<nav id="nav" style="margin: 0; padding: 0;">
 						<ul>
 							<li><a href="{{ url_for('home') }}">Home</a></li>
-							<li><a href="{{ url_for('allcocktails') }}">Cocktails</a></li>
 							{% if current_user.is_authenticated %}
-								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+								<><a href="{{ url_for('mycocktails') }}">My Cocktails</a></>
 								<li><a href="{{ url_for('profile') }}">Profile</a></li>
 								<li><a href="{{ url_for('logout') }}">Log Out</a></li>
 							{% else %}
