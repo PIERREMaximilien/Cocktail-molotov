@@ -7,14 +7,24 @@ from cocktailMolotov.models import User
 from cocktailMolotov import app, db
 from flask_login import login_user, current_user, logout_user, login_required
 from cocktailMolotov import cocktails as api
+import requests
+from cocktailMolotov.cocktails import cocktails as api
+from termcolor import colored
+
+#URL = 'http://127.0.0.1:2000/api/v1/ressources/cocktails/all'
+#price = str(requests.request("GET", url, headers=headers, params = querystring).json()['Quotes'][0]['MinPrice'])
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', title="Home")7
-
-@app.route('/home/<search-result=>')
-def home():
+    alcohol = request.args.get('alcohol')
+    results = []
+    if alcohol:
+        for x in range(100):
+            for alc in api[x]['alcohols']:
+                if alc.lower() == alcohol.lower():
+                    results.append(api[x])
+        return render_template('home.html', title='Home', results=results, alcohol=alcohol)
     return render_template('home.html', title="Home")
 
 
@@ -25,7 +35,10 @@ def mycocktails():
 
 @app.route('/singlecocktail')
 def singlecocktail():
-    return render_template('singlecocktail.html')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    ingredients = request.args.get('ingredients')[1:-1].replace('\'', '').split(',')
+    return render_template('singlecocktail.html', name=name, description=description, ingredients=ingredients)
 
 
 @app.route('/profile')
