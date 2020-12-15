@@ -18,9 +18,8 @@ class User(db.Document, UserMixin):
 class Cocktail(db.Document):
     cocktail_id = db.IntField(primary_key=True)
     name = db.StringField(max_length=120, unique=True, required=True)
-    image_file = db.StringField(default='default-cocktail.jpeg')
     description = db.StringField()
-    ingredients = db.StringField()
+    like = db.IntField()
 
 @app.route('/add', methods=['GET'])
 def db_test():
