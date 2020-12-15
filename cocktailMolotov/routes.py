@@ -35,7 +35,10 @@ def mycocktails():
 
 @app.route('/singlecocktail')
 def singlecocktail():
-    return render_template('singlecocktail.html')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    ingredients = request.args.get('ingredients')[1:-1].replace('\'', '').split(',')
+    return render_template('singlecocktail.html', name=name, description=description, ingredients=ingredients)
 
 
 @app.route('/profile')
