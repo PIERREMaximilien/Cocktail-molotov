@@ -86,7 +86,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('home', title='Home'))
 
 
 @app.route('/api/v1/ressources/cocktails/all', methods=['GET'])

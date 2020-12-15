@@ -20,6 +20,102 @@
 		{% endfor %}
 	{% endif %}
 	{% endwith %}
-	{% block content %}{% endblock %}
 
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+			<!-- Header -->
+			<section id="header" style="margin-top: 0; padding-top: 0;">
+				<nav id="nav" style="margin: 0; padding: 0;">
+					<ul>{% if title == 'Home' %}
+							<li class="current"><a href="{{ url_for('home') }}">Home</a></li>
+						{% else %}
+							<li><a href="{{ url_for('home') }}">Home</a></li>
+						{% endif %}
+						{% if current_user.is_authenticated %}
+							{% if title == 'My Cocktails' %}
+								<li class="current"><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+							{% else %}
+								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+							{% endif %}
+							{% if title == 'My Profile' %}
+								<li class="current"><a href="{{ url_for('profile') }}">Profile</a></li>
+							{% else %}
+								<li><a href="{{ url_for('profile') }}">Profile</a></li>
+							{% endif %}
+							<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+						{% else %}
+							{% if title == 'Login' %}
+								<li class="current"><a href="{{ url_for('login') }}">Log In</a></li>
+							{% else %}
+								<li><a href="{{ url_for('login') }}">Log In</a></li>
+							{% endif %}
+						{% endif %}
+					</ul>
+				</nav>
+			{% if title == 'My Cocktails' or title =='My Profile' or title == 'Login' %}
+				</section>
+			{% endif %}
+
+	{% block content %}{% endblock %}
+		<!-- Footer -->
+		<section id="footer">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-6 col-6-medium">
+						<section>
+							<header>
+								<h2>Follow us!</h2>
+							</header>
+							<ul class="social">
+								<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
+								<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
+								<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
+							</ul>
+					</div>
+					<div class="col-6 col-6-medium">
+							<ul class="contact">
+								<li>
+									<h3>Address</h3>
+									<p>
+										Cocktail Molotov LTD<br />
+										1234 Somewhere Road Suite<br />
+										Brussels, BE 0000
+									</p>
+								</li>
+								<li>
+									<h3>Mail</h3>
+									<p><a href="#">sayhello@cocktailmolotov.com</a></p>
+								</li>
+								<li>
+									<h3>Phone</h3>
+									<p>(800) 000-0000</p>
+								</li>
+							</ul>
+						</section>
+					</div>
+					<div class="col-12">
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="links">
+									<li>&copy; Cocktail Molotov. All rights reserved.</li>
+								</ul>
+							</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+</div>
+
+<!-- Scripts -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.dropotron.min.js"></script>
+<script src="../static/js/browser.min.js"></script>
+<script src="../static/js/breakpoints.min.js"></script>
+<script src="../static/js/util.js"></script>
+<script src="../static/js/main.js"></script>
+</body>
 </html>
