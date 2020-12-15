@@ -20,7 +20,7 @@ def home():
     alcohol = request.args.get('alcohol')
     results = []
     if alcohol:
-        for x in range(100):
+        for x in range(len(api)):
             for alc in api[x]['alcohols']:
                 if alc.lower() == alcohol.lower():
                     results.append(api[x])
