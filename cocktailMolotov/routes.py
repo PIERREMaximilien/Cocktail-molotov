@@ -8,7 +8,6 @@ from cocktailMolotov import app, db
 from flask_login import login_user, current_user, logout_user, login_required
 from cocktailMolotov.cocktails import cocktails as api
 
-
 #URL = 'http://127.0.0.1:2000/api/v1/ressources/cocktails/all'
 #price = str(requests.request("GET", url, headers=headers, params = querystring).json()['Quotes'][0]['MinPrice'])
 
@@ -19,7 +18,7 @@ def home():
     results = []
     results_fav = [api[4], api[9], api[15]]
     if alcohol:
-        for x in range(100):
+        for x in range(len(api)):
             for alc in api[x]['alcohols']:
                 if alc.lower() == alcohol.lower():
                     results.append(api[x])
@@ -39,7 +38,7 @@ def singlecocktail():
     name = request.args.get('name')
     description = request.args.get('description')
     ingredients = request.args.get('ingredients')[1:-1].replace('\'', '').split(',')
-    return render_template('singlecocktail.html', name=name, description=description, ingredients=ingredients)
+    return render_template('singlecocktail.html', title=name, name=name, description=description, ingredients=ingredients)
 
 
 @app.route('/profile')
