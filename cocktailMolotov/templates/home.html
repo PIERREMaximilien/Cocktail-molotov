@@ -8,55 +8,58 @@
 				<section id="header" style="margin-top: 0; padding-top: 0;">
 
 					<!-- Nav -->
-						<nav id="nav" style="margin: 0; padding: 0;">
-							<ul>
-								<li class="current"><a href="{{ url_for('home') }}">Home</a></li>
-								{% if current_user.is_authenticated %}
-									<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
-									<li><a href="{{ url_for('profile') }}">Profile</a></li>
-									<li><a href="{{ url_for('logout') }}">Log Out</a></li>
-								{% else %}
-									<li><a href="{{ url_for('login') }}">Log In</a></li>
-								{% endif %}
-							</ul>
-						</nav>
+					<nav id="nav" style="margin: 0; padding: 0;">
+						<ul>
+							<li class="current"><a href="{{ url_for('home')}}">Home</a></li>
+							{% if current_user.is_authenticated %}
+								<li><a href="{{ url_for('mycocktails') }}">My Cocktails</a></li>
+								<li><a href="{{ url_for('profile') }}">Profile</a></li>
+								<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+							{% else %}
+								<li><a href="{{ url_for('login') }}">Log In</a></li>
+							{% endif %}
+						</ul>
+					</nav>
 
 					<!-- Banner -->
-						<section id="banner">
-							<header>
-								<h3 style="margin: 1em; color: white;">Welcome to Cocktail Molotov.</h3>
-								<h2>What can I fix you?</h2>
-							</header>
-						</section>
+					<section id="banner">
+						<header>
+							<h3 style="margin: 1em; color: white;">Welcome to Cocktail Molotov.</h3>
+							<h2>What can I fix you?</h2>
+						</header>
+					</section>
 
 					<!-- Intro -->
-						<section id="intro" class="container">
-							<div class="row">
-								<div class="col-12">
-									<section class="first">
-										<i class="icon solid featured fa-flask"></i>
-										<header>
-											<h2>Pick your poison!</h2>
-										</header>
-										<form action="">
-											<select name="alcohol-input" id="alcohol-input">
-												<option value="Whiskey">Whiskey</option>
-												<option value="Gin">Gin</option>
-												<option value="Vodka">Vodka</option>
-												<option value="Amaretto">Amaretto</option>
-												<option value="Bourbon">Bourbon</option>
-												<option value="Tequila">Tequila</option>
-											</select>
-										</form>
-									</section>
-								</div>
+					<section id="intro" class="container">
+						<div class="row">
+							<div class="col-12">
+								<section class="first">
+									<i class="icon solid featured fa-flask"></i>
+									<header>
+										<h2>Pick your poison!</h2>
+									</header>
+									<form action="{{ url_for('home') }}" method="GET">
+										<select name="alcohol" id="alcohol-input">
+											<option value="Whiskey">Whiskey</option>
+											<option value="Gin">Gin</option>
+											<option value="Vodka">Vodka</option>
+											<option value="Amaretto">Amaretto</option>
+											<option value="Bourbon">Bourbon</option>
+											<option value="Tequila">Tequila</option>
+											<option value="Triple Sec">Triple Sec</option>
+											<option value="Rum">Rum</option>
+											<option value="Absinthe">Absinthe</option>
+											<option value="Champagne">Champagne</option>
+											<option value="Cognac">Cognac</option>
+											<option value="Prosecco">Prosecco</option>
+											<option value="Brandy">Brandy</option>												
+										</select>
+										<input type="submit" class="button large" value="Fix Me A Drink">
+									</form>
+								</section>
 							</div>
-							<footer>
-								<ul class="actions">
-									<li><a href="#" class="button large">Fix Me A Drink!</a></li>
-								</ul>
-							</footer>
-						</section>
+						</div>
+					</section>
 
 				</section>
 

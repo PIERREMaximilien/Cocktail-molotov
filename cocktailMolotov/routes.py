@@ -7,15 +7,41 @@ from cocktailMolotov.models import User
 from cocktailMolotov import app, db
 from flask_login import login_user, current_user, logout_user, login_required
 from cocktailMolotov import cocktails as api
+import requests
+
+#URL = 'http://127.0.0.1:2000/api/v1/ressources/cocktails/all'
+#price = str(requests.request("GET", url, headers=headers, params = querystring).json()['Quotes'][0]['MinPrice'])
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', title="Home")7
+    alcohol = request.args.get('alcohol')
+    result = []
+    for x in range(100):
+        for j in api.cocktails[x]['alcohols']:
+            if j == alcohol:
+                result.append(api.cocktails[x])
+    if alcohol:
+        '''for x in range(100):
+            if str(request.requests.get)'''
 
-@app.route('/home/<search-result=>')
-def home():
+
+        render_template('home.html', title='Home')
     return render_template('home.html', title="Home")
+
+"""@app.route('/api/v1/ressources/cocktails/all', methods=['GET'])
+def api_all():
+    return redirect(url_for('my_cocktail'))
+    result = []
+    string = ''
+    for x in range(100):
+        for alcohol in api.cocktails[x]['alcohols']:
+            if alcohol == 'absinthe':
+                result.append(api.cocktails[x])
+        #result += api.cocktails[x]['alcohols'][0]
+    print(result)
+    #return 'OK'
+    return jsonify(result)"""
 
 
 @app.route('/mycocktails')
