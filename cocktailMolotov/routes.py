@@ -103,9 +103,23 @@ def api_all():
     #return 'OK'
     return jsonify(result)
 
-@app.route('/add/favorites', methods=['GET'])
-def favorites():
-    #user = User.objects
+@app.route('/add/favorites/<name>', methods=['GET'])
+def favorites(name):
+    cocktail_name = name
+    #user1 = User.objects(id=current_user.id).first()
+    if cocktail_name not in current_user.cocktails:
+        print('in IT')
+        #new_list = current_user.cocktails.append(cocktail_name)
+        User.objects(id=current_user.id).update(cocktails = current_user.cocktails.append(cocktail_name))
+        flash('Added to favorites', 'success')
+    else:
+        flash('You already have it in your favorites', 'error')
     return str(current_user.cocktails)
+    #return cocktail_name
 
 #user = User.objects(email=form.email.data).first()
+
+
+@app.route('/test')
+def test():
+    return str(current_user.cocktails)
