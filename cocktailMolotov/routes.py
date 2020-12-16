@@ -44,7 +44,7 @@ def singlecocktail():
 
 @app.route('/profile')
 def profile():
-    return render_template('proflie.html', title='My Profile')
+    return render_template('profile.html', title='My Profile')
 
 
 @app.route('/register', methods=['GET', 'POST'])
