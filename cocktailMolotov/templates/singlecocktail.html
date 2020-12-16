@@ -12,9 +12,12 @@
 				<p>{{ description}}</p>
 				<h3>Ingredients:</h3>
 				{% for ingredient in ingredients %}
-					<p>-> {{ ingredient }}</p>
+					<p style="margin-bottom: -3px;"><strong>-</strong> {{ ingredient }}</p>
 				{% endfor %}
-			</section>		
+				<button value="add" style="background-color: #ccc; margin-top: 10px;">
+					<a href="/add/favorites/{{ name }}" style="text-decoration: none; color: #37d;">Add to favorites</a>
+				</button>
+			</section>	
 		</div>
 	</div>
 </section>
