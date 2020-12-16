@@ -43,7 +43,7 @@ def singlecocktail():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html', title='My Profile')
+    return render_template('proflie.html', title='My Profile')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -102,3 +102,23 @@ def api_all():
     print(result)
     #return 'OK'
     return jsonify(result)
+
+@app.route('/add/favorites/<name>', methods=['GET'])
+def favorites(name):
+    cocktail_name = str(name)
+    if cocktail_name not in current_user.cocktails:
+        print('in IT')
+        User.objects(id=current_user.id).update(cocktails = current_user.cocktails.append(cocktail_name))
+        flash('Added to favorites', 'success')
+        # We can do it with a string and always split and get a list like this.
+    else:
+        flash('You already have it in your favorites', 'error')
+    return str(current_user.cocktails)
+    #return cocktail_name
+
+#user = User.objects(email=form.email.data).first()
+
+
+@app.route('/test')
+def test():
+    return str(current_user.cocktails)
