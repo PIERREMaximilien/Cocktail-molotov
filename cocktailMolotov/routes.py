@@ -43,7 +43,7 @@ def singlecocktail():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html', title='My Profile')
+    return render_template('proflie.html', title='My Profile')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -102,3 +102,10 @@ def api_all():
     print(result)
     #return 'OK'
     return jsonify(result)
+
+@app.route('/add/favorites', methods=['GET'])
+def favorites():
+    #user = User.objects
+    return str(current_user.cocktails)
+
+#user = User.objects(email=form.email.data).first()
