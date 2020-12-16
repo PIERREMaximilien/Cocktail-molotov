@@ -4,6 +4,7 @@ cocktails = [
     "name": "Mojito",
     "ingredients": ["50 ml White Rum", "8 Mint leaves", "12 1/2 ml Sugar Syrup", "25 ml Lime Juice", "2 Mint sprigs"],
     "description": "Add the white rum to a highball glass. Add 8 – 10 mint leaves and sugar syrup and lime juice.Muddle with bar spoon. Add crushed ice and a splash of soda. Mix drink down with bar spoon. Taste. Top up with more crushed ice. Slap 2 mint sprigs to release essence and put into drink. Add small splash of soda and straw."},
+
     {"id": 1,
     "alcohols": ["gin", "dry vermouth"],
     "name": "Martini",
