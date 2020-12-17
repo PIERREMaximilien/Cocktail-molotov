@@ -32,8 +32,11 @@
 								</header>
 								<p>{{ result['description'] }}</p>
 								<footer>
-									<ul class="actions">
+									<ul class="actions" style="margin-bottom: 10px;">
 										<li><a href="{{ url_for('singlecocktail') }}?name={{ result['name'] }}&description={{ result['description'] }}&ingredients={{ result['ingredients'] }}" class="button alt">Find Out more</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="delete_favorite/{{ result['name'] }}" class="button danger">Remove</a></li>
 									</ul>
 								</footer>
 							</section>
