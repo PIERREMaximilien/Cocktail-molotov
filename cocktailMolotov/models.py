@@ -13,17 +13,13 @@ def load_user(id):
 class User(db.Document, UserMixin):
     username = db.StringField(max_length=120, unique=True, required=True)
     email = db.StringField(max_length=120, unique=True, required=True)
-    password = db.StringField(max_length=120, unique=True, required=True)
+    password = db.StringField(max_length=120, required=True)
     cocktails = db.ListField()
 
 class Cocktail(db.Document):
     cocktail_id = db.IntField(primary_key=True)
     name = db.StringField(max_length=120, unique=True, required=True)
     description = db.StringField()
-    like = db.IntField()
+    like = db.BooleanField()
 
-@app.route('/add', methods=['GET'])
-def db_test():
-    test = User(username='test', email='test@gmail.com', password='test').save()
-    #user.save()
-    return 'Success'
+

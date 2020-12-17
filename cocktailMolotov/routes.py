@@ -2,11 +2,12 @@ import os
 import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort, jsonify
-from cocktailMolotov.forms import RegistrationForm, LoginForm
+from cocktailMolotov.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm
 from cocktailMolotov.models import User
-from cocktailMolotov import app, db
+from cocktailMolotov import app, db, mail
 from flask_login import login_user, current_user, logout_user, login_required
 from cocktailMolotov.cocktails import cocktails as api
+from flask_mail import Message
 
 #URL = 'http://127.0.0.1:2000/api/v1/ressources/cocktails/all'
 #price = str(requests.request("GET", url, headers=headers, params = querystring).json()['Quotes'][0]['MinPrice'])
@@ -43,7 +44,7 @@ def singlecocktail():
 
 @app.route('/profile')
 def profile():
-    return render_template('proflie.html', title='My Profile')
+    return render_template('profile.html', title='My Profile')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -89,19 +90,35 @@ def logout():
     return redirect(url_for('home', title='Home'))
 
 
-@app.route('/api/v1/ressources/cocktails/all', methods=['GET'])
-def api_all():
-    return redirect(url_for('my_cocktail'))
-    result = []
-    string = ''
-    for x in range(100):
-        for alcohol in api.cocktails[x]['alcohols']:
-            if alcohol == 'absinthe':
-                result.append(api.cocktails[x])
-        #result += api.cocktails[x]['alcohols'][0]
-    print(result)
-    #return 'OK'
-    return jsonify(result)
+def send_reset_email(user):
+    msg = Message('Password Reset Request', sender='cocktail.molotov.info@gmail.com', recipients=[user.email])
+    msg.body = f'''Please visit this link to reset your password:
+    {url_for('reset_token', _external=True)}
+    '''
+    mail.send(msg)
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    form = RequestResetForm()
+    
+    if form.validate_on_submit():
+        user = User.objects(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent to your email address.')
+        return redirect(url_for('login'))
+    
+    return render_template('reset-request.html', title='Reset Password', form=form)
+
+@app.route('/reset_token', methods=['GET', 'POST'])
+def reset_token():
+    form = ResetPasswordForm()
+
+    if form.validate_on_submit():
+        User.objects(email=form.email.data).update(password = form.password.data)
+        flash('Your password has been updated')
+
+    return render_template('reset-token.html', title='Reset Password', form=form)
+
 
 @app.route('/add/favorites/<name>', methods=['GET'])
 def favorites(name):
@@ -117,8 +134,3 @@ def favorites(name):
     #return cocktail_name
 
 #user = User.objects(email=form.email.data).first()
-
-
-@app.route('/test')
-def test():
-    return str(current_user.cocktails)

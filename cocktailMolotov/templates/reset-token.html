@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- Main -->
+</section> <!--don't delete-->
+<section id="main" style="text-align: center;">
+	<div class="container" style="text-align: center;">
+		<div class="row" style="text-align: center;">
+			<section class="col-8 col-10-sm" style="text-align: center; margin: auto;">
+				<form action="" method="POST">   
+                    {{ form.hidden_tag() }}
+
+                    {{ form.email.label }}
+
+                    {{ form.email }}
+
+                    {{ form.password.label }}
+                            
+                    {{ form.password }}
+                          
+                    {{ form.confirm_password.label }}
+                           
+                    {{ form.confirm_password }}
+                          
+                    {{ form.submit }} 
+                </form>
+			</section>		
+		</div>
+	</div>
+</section>
+
+{% endblock content %}
