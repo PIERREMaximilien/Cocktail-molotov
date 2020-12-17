@@ -4,6 +4,7 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort, jsonify
 from cocktailMolotov.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm
 from cocktailMolotov.models import User
+from cocktailMolotov.models import Cocktail
 from cocktailMolotov import app, db, mail
 from flask_login import login_user, current_user, logout_user, login_required
 from cocktailMolotov.cocktails import cocktails as api
@@ -27,6 +28,7 @@ def home():
     else:
         return render_template('home.html', title='Home', results_fav=results_fav)
     return render_template('home.html', title="Home")
+    
 
 
 @app.route('/mycocktails')
@@ -123,14 +125,70 @@ def reset_token():
 @app.route('/add/favorites/<name>', methods=['GET'])
 def favorites(name):
     cocktail_name = str(name)
-    if cocktail_name not in current_user.cocktails:
-        print('in IT')
-        User.objects(id=current_user.id).update(cocktails = current_user.cocktails.append(cocktail_name))
-        flash('Added to favorites', 'success')
-        # We can do it with a string and always split and get a list like this.
+    if current_user:
+        if Cocktail.objects(name=cocktail_name, user_id=current_user.id).first():
+            flash('You already have it in your favorites.', 'error')
+            return redirect(url_for('favorite_cocktails'))
+        else:
+            cocktail = Cocktail(name=cocktail_name, user_id=str(current_user.id))
+            cocktail.save()
+            flash('Added to your favorites.')
+            return redirect(url_for('favorite_cocktails'))
     else:
-        flash('You already have it in your favorites', 'error')
-    return str(current_user.cocktails)
-    #return cocktail_name
+        flash('You need to log in first.', 'success')
+        return redirect(url_for('login'))
+
+
+@app.route('/favorite-cocktails', methods=['GET'])
+def favorite_cocktails():
+    results = []
+    favorites = Cocktail.objects(user_id=str(current_user.id))
+    favorite_names = [x.name.lower() for x in favorites]
+    for x in range(len(api)):
+        if str(api[x]['name'].lower()) in favorite_names:
+            results.append(api[x])
+
+    return render_template('favorites.html', title="Favorites", results=results)
+
+'''
+alcohol = request.args.get('alcohol')
+    results = []
+    results_fav = [api[4], api[9], api[15]]
+    if alcohol:
+        for x in range(len(api)):
+            for alc in api[x]['alcohols']:
+                if alc.lower() == alcohol.lower():
+                    results.append(api[x])
+        return render_template('home.html', title='Home', results=results, alcohol=alcohol)
+    else:'''
+"""
+THIS WAS JUST DUMB
+@app.route('/add/favorites/<name>', methods=['GET'])
+def favorites(name):
+    #return current_user.cocktails 
+    if current_user:
+        cocktail_name = str(name)
+        current_user.cocktails += cocktail_name
+        cocktail_list = str(current_user.cocktails += cocktail_name).split(',')
+        #return str(current_user.cocktails)
+
+        return str(current_user.cocktails.split(','))
+        if cocktail_name not in cocktail_list:
+            print(cocktail_name)
+            print('in IT')
+            new_cocktail_list = cocktail_list.append(cocktail_name)
+            print(new_cocktail_list)
+            return str(new_cocktail_list)
+            ''User.objects(id=current_user.id).update(cocktails = current_user.cocktails.append(cocktail_name))
+            flash('Added to favorites', 'success')
+            # We can do it with a string and always split and get a list like this.
+        else:
+            flash('You already have it in your favorites', 'error')
+        return str(current_user.cocktails)'''
+        #return cocktail_name
+    else:
+        flash('You need to login first.', 'success')
+        return redirect(url_for('login'))
 
 #user = User.objects(email=form.email.data).first()
+"""
