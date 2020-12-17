@@ -150,6 +150,15 @@ def favorite_cocktails():
 
     return render_template('favorites.html', title="Favorites", results=results)
 
+
+@app.route('/delete_favorite/<name>', methods=['GET'])
+def delete_favorite(name):
+    cocktail_name = str(name)
+    Cocktail.objects(user_id=str(current_user.id), name=cocktail_name).delete()
+    return redirect(url_for('favorite_cocktails'))
+
+
+
 '''
 alcohol = request.args.get('alcohol')
     results = []
