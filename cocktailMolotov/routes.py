@@ -141,8 +141,26 @@ def favorites(name):
 
 @app.route('/favorite-cocktails', methods=['GET'])
 def favorite_cocktails():
-    return render_template('favorites.html')
-    return 'favorite_cocktails'
+    results = []
+    favorites = Cocktail.objects(user_id=str(current_user.id))
+    favorite_names = [x.name.lower() for x in favorites]
+    for x in range(len(api)):
+        if str(api[x]['name'].lower()) in favorite_names:
+            results.append(api[x])
+
+    return render_template('favorites.html', title="Favorites", results=results)
+
+'''
+alcohol = request.args.get('alcohol')
+    results = []
+    results_fav = [api[4], api[9], api[15]]
+    if alcohol:
+        for x in range(len(api)):
+            for alc in api[x]['alcohols']:
+                if alc.lower() == alcohol.lower():
+                    results.append(api[x])
+        return render_template('home.html', title='Home', results=results, alcohol=alcohol)
+    else:'''
 """
 THIS WAS JUST DUMB
 @app.route('/add/favorites/<name>', methods=['GET'])
