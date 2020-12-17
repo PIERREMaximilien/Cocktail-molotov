@@ -28,6 +28,8 @@ def home():
     else:
         return render_template('home.html', title='Home', results_fav=results_fav)
     return render_template('home.html', title="Home")
+    
+
 
 
 @app.route('/mycocktails')
@@ -127,17 +129,20 @@ def favorites(name):
     if current_user:
         if Cocktail.objects(name=cocktail_name, user_id=current_user.id).first():
             flash('You already have it in your favorites.', 'error')
-            return 'ERROR ALREADY HAVE'
-            return redirect(url_for('home'))
+            return redirect(url_for('favorite_cocktails'))
         else:
             cocktail = Cocktail(name=cocktail_name, user_id=str(current_user.id))
             cocktail.save()
             flash('Added to your favorites.')
-            return 'SUCCESS'
-            return redirect(url_for('home'))
+            return redirect(url_for('favorite_cocktails'))
     else:
         flash('You need to log in first.', 'success')
         return redirect(url_for('login'))
+
+
+@app.route('/favorite-cocktails', methods=['GET'])
+def favorite_cocktails():
+    return 'favorite_cocktails'
 """
 THIS WAS JUST DUMB
 @app.route('/add/favorites/<name>', methods=['GET'])
