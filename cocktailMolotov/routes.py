@@ -125,13 +125,15 @@ def reset_token():
 def favorites(name):
     cocktail_name = str(name)
     if current_user:
-        if Cocktail.objects(name=cocktail_name, user_id=current_user.id):
+        if Cocktail.objects(name=cocktail_name, user_id=current_user.id).first():
             flash('You already have it in your favorites.', 'error')
+            return 'ERROR ALREADY HAVE'
             return redirect(url_for('home'))
         else:
-            cocktail = Cocktail.objects(name=cocktail_name, user_id=current_user.id)
+            cocktail = Cocktail(name=cocktail_name, user_id=str(current_user.id))
             cocktail.save()
             flash('Added to your favorites.')
+            return 'SUCCESS'
             return redirect(url_for('home'))
     else:
         flash('You need to log in first.', 'success')

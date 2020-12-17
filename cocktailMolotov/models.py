@@ -14,7 +14,6 @@ class User(db.Document, UserMixin):
     username = db.StringField(max_length=120, unique=True, required=True)
     email = db.StringField(max_length=120, unique=True, required=True)
     password = db.StringField(max_length=120, required=True)
-    cocktails = db.StringField(default='')
 
 class Cocktail(db.Document):
     #cocktail_id = db.IntField(primary_key=True)
