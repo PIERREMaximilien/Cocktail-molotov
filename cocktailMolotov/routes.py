@@ -31,7 +31,6 @@ def home():
     
 
 
-
 @app.route('/mycocktails')
 def mycocktails():
     return render_template('myCocktails.html', title='My Cocktails')
@@ -142,6 +141,7 @@ def favorites(name):
 
 @app.route('/favorite-cocktails', methods=['GET'])
 def favorite_cocktails():
+    return render_template('favorites.html')
     return 'favorite_cocktails'
 """
 THIS WAS JUST DUMB
